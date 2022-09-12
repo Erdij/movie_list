@@ -42,7 +42,7 @@ class App extends React.Component {
             <SearchBar />
           </div>
         </div>
-        <MovieList />
+        <MovieList movies={this.state.movies} />
       </div>
     );
   }
