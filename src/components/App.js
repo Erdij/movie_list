@@ -36,9 +36,12 @@ class App extends React.Component {
 
   deleteMovie = (movie) => {
     const newMovieList = this.state.movies.filter((m) => m.id !== movie.id);
-    this.setState({
-      movies: newMovieList,
-    });
+    // this.setState({
+    //   movies: newMovieList,      //önceki state verisi boş ise kullanmak mantıklı
+    // });
+    this.setState((state) => ({
+      movies: newMovieList, // var olan state i güncellemek için
+    }));
   };
 
   render() {
