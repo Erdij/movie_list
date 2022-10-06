@@ -4,9 +4,14 @@ class SearchBar extends React.Component {
   state = {
     searchQuery: "",
   };
+
+  handleFromSubmit = (event) => {
+    event.preventDefault(); //varsayılan davranışı durdurduk.Çünkü enter deyince refresh ediyordu sayfa.
+  };
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleFromSubmit}>
         <div className="form-row mb-5">
           <div className="col-12">
             <input
@@ -16,6 +21,7 @@ class SearchBar extends React.Component {
               type="text"
               className="form-control"
               placeholder="Search a movie"
+              value={this.state.searchQuery} // controlled components
             />
           </div>
         </div>
