@@ -32,6 +32,7 @@ class App extends React.Component {
         id: 11,
       },
     ],
+    searchQuery: "",
   };
 
   deleteMovie = (movie) => {

@@ -1,10 +1,6 @@
 import React from "react";
 
 class SearchBar extends React.Component {
-  state = {
-    searchQuery: "",
-  };
-
   handleFromSubmit = (event) => {
     event.preventDefault(); //varsayılan davranışı durdurduk.Çünkü enter deyince refresh ediyordu sayfa.
   };
