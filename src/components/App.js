@@ -45,12 +45,16 @@ class App extends React.Component {
     }));
   };
 
+  searchMovie = (event) => {
+    console.log(event.target.value);
+  };
+
   render() {
     return (
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <SearchBar />
+            <SearchBar searchMovieProp={this.searchMovie} />
           </div>
         </div>
         <MovieList
