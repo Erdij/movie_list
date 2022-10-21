@@ -41,6 +41,7 @@ class App extends React.Component {
     console.log(response); //http response döndü ama biz json formatında istiyoruz.
     const data = await response.json();
     console.log(data);
+    this.setState({ movies: data });
   }
 
   deleteMovie = (movie) => {
