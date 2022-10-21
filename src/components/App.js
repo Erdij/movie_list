@@ -1,6 +1,7 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 import MovieList from "./MovieList";
+import axios from "axios";
 class App extends React.Component {
   state = {
     movies: [
@@ -35,13 +36,19 @@ class App extends React.Component {
     searchQuery: "",
   };
 
+  // async componentDidMount() {
+  //   const baseURL = "http://localhost:3002/movies";
+  //   const response = await fetch(baseURL);
+  //   console.log(response); //http response döndü ama biz json formatında istiyoruz.
+  //   const data = await response.json(); //json formatına dönüştürdük.
+  //   console.log(data);
+  //   this.setState({ movies: data });
+  // }
+
   async componentDidMount() {
-    const baseURL = "http://localhost:3002/movies";
-    const response = await fetch(baseURL);
-    console.log(response); //http response döndü ama biz json formatında istiyoruz.
-    const data = await response.json();
-    console.log(data);
-    this.setState({ movies: data });
+    const response = await axios.get("http://localhost:3002/movies"); // tek seferde datayı json formatında almış olduk.
+    console.log(response);
+    this.setState({ movies: response.data });
   }
 
   deleteMovie = (movie) => {
