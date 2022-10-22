@@ -61,7 +61,29 @@ class App extends React.Component {
   //   }));
   // };
 
-  // for Fetch Api
+  // for Fetch Api **
+  // deleteMovie = async (movie) => {
+  //   const baseURL = `http://localhost:3002/movies/${movie.id}`;
+  //   await fetch(baseURL, {
+  //     method: "DELETE",
+  //   });
+
+  //   const newMovieList = this.state.movies.filter((m) => m.id !== movie.id);
+  //   this.setState((state) => ({
+  //     movies: newMovieList, // var olan state i güncellemek için
+  //   }));
+  // };
+
+  // for AXIOS API **
+
+  deleteMovie = async (movie) => {
+    axios.delete(`http://localhost:3002/movies/${movie.id}`);
+    const newMovieList = this.state.movies.filter((m) => m.id !== movie.id);
+    this.setState((state) => ({
+      movies: newMovieList, // var olan state i güncellemek için
+    }));
+  };
+
   deleteMovie = async (movie) => {
     const baseURL = `http://localhost:3002/movies/${movie.id}`;
     await fetch(baseURL, {
@@ -73,6 +95,7 @@ class App extends React.Component {
       movies: newMovieList, // var olan state i güncellemek için
     }));
   };
+
   searchMovie = (event) => {
     // console.log(event.target.value);
     this.setState({ searchQuery: event.target.value });
