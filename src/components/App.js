@@ -47,20 +47,32 @@ class App extends React.Component {
 
   async componentDidMount() {
     const response = await axios.get("http://localhost:3002/movies"); // tek seferde datayı json formatında almış olduk.
-    console.log(response);
+    // console.log(response);
     this.setState({ movies: response.data });
   }
 
-  deleteMovie = (movie) => {
+  // deleteMovie = (movie) => {
+  //   const newMovieList = this.state.movies.filter((m) => m.id !== movie.id);
+  //   // this.setState({
+  //   //   movies: newMovieList,      //önceki state verisi boş ise kullanmak mantıklı
+  //   // });
+  //   this.setState((state) => ({
+  //     movies: newMovieList, // var olan state i güncellemek için
+  //   }));
+  // };
+
+  // for Fetch Api
+  deleteMovie = async (movie) => {
+    const baseURL = `http://localhost:3002/movies/${movie.id}`;
+    await fetch(baseURL, {
+      method: "DELETE",
+    });
+
     const newMovieList = this.state.movies.filter((m) => m.id !== movie.id);
-    // this.setState({
-    //   movies: newMovieList,      //önceki state verisi boş ise kullanmak mantıklı
-    // });
     this.setState((state) => ({
       movies: newMovieList, // var olan state i güncellemek için
     }));
   };
-
   searchMovie = (event) => {
     // console.log(event.target.value);
     this.setState({ searchQuery: event.target.value });
