@@ -46,7 +46,9 @@ class App extends React.Component {
   // }
 
   async componentDidMount() {
-    const response = await axios.get("http://localhost:3002/movies"); // tek seferde datayı json formatında almış olduk.
+    const response = await axios.get(
+      "https://api.themoviedb.org/3/movie/550?api_key=043e90872a1f8f7d2c22eed3b194f15d"
+    ); // tek seferde datayı json formatında almış olduk.
     // console.log(response);
     this.setState({ movies: response.data });
   }
