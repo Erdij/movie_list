@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 import MovieList from "./MovieList";
 import axios from "axios";
 // require("dotenv").config();
-console.log(process.env.REACT_APP_API_KEY);
+// console.log(process.env.REACT_APP_API_KEY);
 class App extends React.Component {
   state = {
     movies: [
@@ -87,7 +87,7 @@ class App extends React.Component {
 
   deleteMovie = async (movie) => {
     axios.post(`https://api.themoviedb.org/3/list/8223918/remove_item?media_id=${movie.id}
-&session_id=9ecec6918cc67332b3db556b11fbe5e9fe7d6da4&api_key=043e90872a1f8f7d2c22eed3b194f15d`);
+&session_id=${process.env.REACT_APP_SESSION_ID}&api_key=${process.env.REACT_APP_API_KEY}`);
 
     const newMovieList = this.state.movies.filter((m) => m.id !== movie.id);
     this.setState((state) => ({
