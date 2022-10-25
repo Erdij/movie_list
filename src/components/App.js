@@ -2,6 +2,8 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import MovieList from "./MovieList";
 import axios from "axios";
+// require("dotenv").config();
+console.log(process.env.REACT_APP_API_KEY);
 class App extends React.Component {
   state = {
     movies: [
@@ -46,9 +48,13 @@ class App extends React.Component {
   // }
 
   async componentDidMount() {
-    const response = await axios.get("http://localhost:3002/movies"); // tek seferde datayı json formatında almış olduk.
-    // console.log(response);
-    this.setState({ movies: response.data });
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/list/8223918?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+    ); // tek seferde datayı json formatında almış olduk.
+    console.log(response.data.results); //apiden önce
+    console.log(response.data.items); //listteki apiyi çektikten sonra güncelledik.**
+    // this.setState({ movies: response.data.results });
+    this.setState({ movies: response.data.items }); //**
   }
 
   // deleteMovie = (movie) => {
@@ -77,15 +83,7 @@ class App extends React.Component {
   // for AXIOS API **
 
   deleteMovie = async (movie) => {
-    axios.delete(`http://localhost:3002/movies/${movie.id}`);
-    const newMovieList = this.state.movies.filter((m) => m.id !== movie.id);
-    this.setState((state) => ({
-      movies: newMovieList, // var olan state i güncellemek için
-    }));
-  };
-
-  deleteMovie = async (movie) => {
-    const baseURL = `http://localhost:3002/movies/${movie.id}`;
+    const baseURL = `https://api.themoviedb.org/3/movie/550?api_key=043e90872a1f8f7d2c22eed3b194f15d/${movie.id}`;
     await fetch(baseURL, {
       method: "DELETE",
     });
@@ -103,7 +101,7 @@ class App extends React.Component {
 
   render() {
     let filteredMovies = this.state.movies.filter((movie) => {
-      return movie.name.toLowerCase().indexOf(this.state.searchQuery) !== -1;
+      return movie.title.toLowerCase().indexOf(this.state.searchQuery) !== -1;
     });
     return (
       <div className="container">
