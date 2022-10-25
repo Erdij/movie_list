@@ -49,12 +49,19 @@ class App extends React.Component {
 
   async componentDidMount() {
     const response = await axios.get(
+<<<<<<< HEAD
       `https://api.themoviedb.org/3/list/8223918?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     ); // tek seferde datayı json formatında almış olduk.
     console.log(response.data.results); //apiden önce
     console.log(response.data.items); //listteki apiyi çektikten sonra güncelledik.**
     // this.setState({ movies: response.data.results });
     this.setState({ movies: response.data.items }); //**
+=======
+      "https://api.themoviedb.org/3/movie/550?api_key=043e90872a1f8f7d2c22eed3b194f15d"
+    ); // tek seferde datayı json formatında almış olduk.
+    // console.log(response);
+    this.setState({ movies: response.data });
+>>>>>>> ef80eea7d9852afd03be8e027891d31f4693369b
   }
 
   // deleteMovie = (movie) => {
