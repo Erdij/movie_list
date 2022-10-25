@@ -86,10 +86,8 @@ class App extends React.Component {
   // for AXIOS API **
 
   deleteMovie = async (movie) => {
-    const baseURL = `https://api.themoviedb.org/3/movie/550?api_key=043e90872a1f8f7d2c22eed3b194f15d/${movie.id}`;
-    await fetch(baseURL, {
-      method: "DELETE",
-    });
+    axios.post(`https://api.themoviedb.org/3/list/8223918/remove_item?media_id=${movie.id}
+&session_id=9ecec6918cc67332b3db556b11fbe5e9fe7d6da4&api_key=043e90872a1f8f7d2c22eed3b194f15d`);
 
     const newMovieList = this.state.movies.filter((m) => m.id !== movie.id);
     this.setState((state) => ({
